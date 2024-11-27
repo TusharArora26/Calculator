@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simple Calculator - Tkinter App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .button {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            font-size: 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #d32f2f;
+        }
+
+        .button:active {
+            background-color: #c2185b;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Simple Calculator</h1>
+        <input type="text" id="output" disabled />
+        <div class="grid-container">
+            <button class="button" onclick="press(1)">1</button>
+            <button class="button" onclick="press(2)">2</button>
+            <button class="button" onclick="press(3)">3</button>
+            <button class="button" onclick="press('+')">+</button>
+            <button class="button" onclick="press(4)">4</button>
+            <button class="button" onclick="press(5)">5</button>
+            <button class="button" onclick="press(6)">6</button>
+            <button class="button" onclick="press('-')">-</button>
+            <button class="button" onclick="press(7)">7</button>
+            <button class="button" onclick="press(8)">8</button>
+            <button class="button" onclick="press(9)">9</button>
+            <button class="button" onclick="press('*')">*</button>
+            <button class="button" onclick="press(0)">0</button>
+            <button class="button" onclick="press('.')">.</button>
+            <button class="button" onclick="equalpress()">=</button>
+            <button class="button" onclick="press('/')">/</button>
+            <button class="button" onclick="clear()">Clear</button>
+        </div>
+    </div>
+
+    <script>
+        let expression = "";
+
+        function press(num) {
+            expression += num;
+            document.getElementById('output').value = expression;
+        }
+
+        function equalpress() {
+            try {
+                expression = eval(expression).toString();
+                document.getElementById('output').value = expression;
+            } catch (error) {
+                document.getElementById('output').value = "Error";
+                expression = "";
+            }
+        }
+
+        function clear() {
+            expression = "";
+            document.getElementById('output').value = "";
+        }
+    </script>
+</body>
+
+</html>
